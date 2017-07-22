@@ -114,7 +114,7 @@ persist.media.treble_omx=true
 ro.nfc.port=I2C
 persist.nfc.smartcard.config=SIM1,eSE1
 
-# Pref
+# Perf
 ro.sys.fw.bg_apps_limit=60
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.am.reschedule_service=true
