@@ -223,6 +223,7 @@ PRODUCT_PACKAGES += \
     gps.msm8998 \
     gps.conf \
     libgnsspps \
+    libvehiclenetwork-native
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:system/vendor/etc/flp.conf \
