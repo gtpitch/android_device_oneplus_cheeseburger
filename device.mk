@@ -108,13 +108,13 @@ PRODUCT_PACKAGES += \
 -include $(LOCAL_PATH)/audio/configs/msm8998/msm8998.mk
 
 # ANT+
-PRODUCT_PACKAGES += \
-    AntHalService \
-    com.dsi.ant.antradio_library \
-    libantradio
+#PRODUCT_PACKAGES += \
+#    AntHalService \
+#    com.dsi.ant.antradio_library \
+#    libantradio
 
-PRODUCT_COPY_FILES += \
-    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
+#PRODUCT_COPY_FILES += \
+#    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
 
 # Bluetooth
 PRODUCT_PACKAGES += \
@@ -146,9 +146,9 @@ PRODUCT_PACKAGES += \
     liboverlay \
     libtinyxml
 
-# Doze
-PRODUCT_PACKAGES += \
-    OneplusDoze
+# Doze mode
+#PRODUCT_PACKAGES += \
+#    OneplusDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -157,8 +157,8 @@ PRODUCT_PACKAGES += \
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-impl \
-    fingerprintd \
-    OneplusPocketMode
+    fingerprintd
+#    OneplusPocketMode
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
