@@ -336,6 +336,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/recovery/root/twrp.fstab:recovery/root/etc/twrp.fstab
 endif
 
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal@1.0-impl \
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service \
