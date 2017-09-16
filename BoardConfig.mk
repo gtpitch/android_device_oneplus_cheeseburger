@@ -32,6 +32,9 @@ BOARD_VENDOR := oneplus
 # Assertions
 TARGET_OTA_ASSERT_DEVICE := OnePlus5,cheeseburger,oneplus5,op5,A5000
 
+# we are too big to fit in
+PRODUCT_SKIP_FINGERPRINT_FROM_FILE := true
+
 # Use Snapdragon LLVM, if available
 TARGET_USE_SDCLANG := true
 
