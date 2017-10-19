@@ -29,4 +29,7 @@
     <bool name="config_gesture_settings_enabled">false</bool>
 
   <bool name="config_voice_over_lte_enabled">true</bool>
+
+  <!-- Whether to enable "show operator name in the status bar" setting -->
+  <bool name="config_showOperatorNameInStatusBar">true</bool>
 </resources>
