@@ -135,8 +135,8 @@ PRODUCT_PACKAGES += \
     libtinyxml
 
 # Doze mode
-#PRODUCT_PACKAGES += \
-#    OneplusThreeDoze
+PRODUCT_PACKAGES += \
+    OneplusThreeDoze
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
