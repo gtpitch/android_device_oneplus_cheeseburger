@@ -29,5 +29,10 @@
     "repository": "LineageOS/android_packages_resources_devicesettings",
     "target_path": "packages/resources/devicesettings",
     "branch": "lineage-15.0"
+  },
+  {
+   "remote"   : "aosip",
+   "repository": "platform_vendor_qcom_opensource_bluetooth",
+   "target_path": "vendor/qcom/opensource/bluetooth"
   }
 ]
