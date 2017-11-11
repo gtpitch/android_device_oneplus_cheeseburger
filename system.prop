@@ -199,4 +199,5 @@ persist.dbg.wfc_avail_ovr=1
 # Wi-Fi
 wifi.interface=wlan0
 
-
+# USB
+sys.usb.configfs=1
