@@ -48,6 +48,7 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libadm.so
 vendor/lib/libaudcal.so
+vendor/lib/libhwdaphal.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
@@ -56,6 +57,7 @@ vendor/lib64/libacdbloader.so
 vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
+vendor/lib64/libhwdaphal.so
 vendor/lib64/soundfx/libqcbassboost.so
 vendor/lib64/soundfx/libqcreverb.so
 vendor/lib64/soundfx/libqcvirt.so
@@ -113,7 +115,7 @@ vendor/lib/libxml.so
 vendor/lib64/libcne.so|a38cf49ee5c42bc3efa9276d38c05e2232a9565e
 vendor/lib64/libcneapiclient.so|ebc1085bda166c21d33d724f6e83822497929399
 vendor/lib64/libcneqmiutils.so
-vendor/lib64/libprotobuf-cpp-lgcy.so|196013f7f1a84dfb0efdb736dd661b615ef4c5ae
+vendor/lib64/libprotobuf-cpp-lgcy.so|75b0bab57505c6be44748c207000fad72d322429
 vendor/lib64/libvendorconn.so
 vendor/lib64/libwms.so
 vendor/lib64/libwqe.so
@@ -263,14 +265,11 @@ vendor/lib64/libsdm-color.so
 vendor/lib64/libsdm-diag.so
 -vendor/lib64/libsdm-disp-apis.so
 vendor/lib64/libsdmextension.so
+vendor/lib64/libuiblur.so
 
 # Keystore
 vendor/lib/hw/keystore.msm8998.so
 vendor/lib64/hw/keystore.msm8998.so
-
-# Listen
-vendor/lib/hw/sound_trigger.primary.msm8998.so
-vendor/lib/libsmwrapper.so
 
 # Media
 -vendor/lib/libgpustats.so
@@ -280,17 +279,20 @@ lib64/libvpplibrary.so
 lib/libOmxVpp.so
 lib/libvpplibrary.so
 vendor/lib64/libI420colorconvert.so
+vendor/lib64/libmiracast.so
+vendor/lib64/libmm-color-convertor.so
+vendor/lib64/libmmosal.so
 vendor/lib64/libOmxAacDec.so
 vendor/lib64/libOmxEvrcDec.so
 vendor/lib64/libOmxQcelp13Dec.so
-vendor/lib64/libmm-color-convertor.so
-vendor/lib64/libmmosal.so
 vendor/lib64/libvpphvx.so
 vendor/lib/libI420colorconvert.so
+vendor/lib/libmiracast.so
 vendor/lib/libmm-color-convertor.so
 vendor/lib/libmmosal.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxEvrcDec.so
+vendor/lib/libOmxVideoDSMode.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libvpphvx.so
 vendor/lib/libvqzip.so
@@ -375,7 +377,7 @@ etc/permissions/telephonyservice.xml
 framework/embmslibrary.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
-framework/qti-telephony-common.jar
+framework/qti-telephony-common.jar|b6c94f544cfcbd5706b1ca8bd14e490e78c6307a
 framework/QtiTelephonyServicelibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
@@ -392,7 +394,7 @@ vendor/lib64/libril-qc-qmi-1.so
 vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/librilqmiservices.so
-vendor/lib64/libsettings.so
+vendor/lib64/libsettings.so|15a3f56004b7ebec96c8bfe35ef2f05ae6cb3ebe
 vendor/lib64/libsystem_health_mon.so
 vendor/qcril.db
 
