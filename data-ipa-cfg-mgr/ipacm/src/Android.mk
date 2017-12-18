@@ -1,7 +1,11 @@
-BOARD_PLATFORM_LIST := test
+BOARD_PLATFORM_LIST := msm8909
+BOARD_PLATFORM_LIST += msm8916
+BOARD_PLATFORM_LIST += msm8917
+BOARD_PLATFORM_LIST += msm8937
+BOARD_PLATFORM_LIST += msm8976
+BOARD_PLATFORM_LIST += msm8952
 BOARD_IPAv3_LIST := msm8998
-BOARD_IPAv3_LIST += sdm845
-ifeq ($(call is-board-platform-in-list,$(BOARD_PLATFORM_LIST)),true)
+ifneq ($(call is-board-platform-in-list,$(BOARD_PLATFORM_LIST)),true)
 ifneq (,$(filter $(QCOM_BOARD_PLATFORMS),$(TARGET_BOARD_PLATFORM)))
 ifneq (, $(filter aarch64 arm arm64, $(TARGET_ARCH)))
 
@@ -26,10 +30,9 @@ LOCAL_C_INCLUDES += external/libnfnetlink/include
 LOCAL_C_INCLUDES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
-
 LOCAL_CFLAGS := -v
 LOCAL_CFLAGS += -DFEATURE_IPA_ANDROID
-LOCAL_CFLAGS += -DFEATURE_IPACM_HAL
+LOCAL_CFLAGS += -DFEATURE_IPACM_HAL -Wall -Werror -Wno-error=macro-redefined
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 LOCAL_CFLAGS += -DDEBUG
 endif
@@ -42,6 +45,7 @@ filetoadd = bionic/libc/kernel/arch-arm/asm/posix_types.h
 LOCAL_CFLAGS += $(shell if [ -a $(filetoadd) ] ; then echo -include $(filetoadd) ; fi ;)
 filetoadd = bionic/libc/kernel/arch-arm/asm/byteorder.h
 LOCAL_CFLAGS += $(shell if [ -a $(filetoadd) ] ; then echo -include $(filetoadd) ; fi ;)
+
 
 LOCAL_SRC_FILES := IPACM_Main.cpp \
 		IPACM_EvtDispatcher.cpp \
@@ -87,6 +91,7 @@ LOCAL_SHARED_LIBRARIES += libhwbinder \
                 android.hardware.tetheroffload.control@1.0
 
 LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_EXECUTABLES)
+
 LOCAL_CLANG := true
 include $(BUILD_EXECUTABLE)
 
@@ -107,7 +112,7 @@ endef
 include $(CLEAR_VARS)
 LOCAL_MODULE := IPACM_cfg.xml
 LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)
+LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_ETC)
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_OWNER := ipacm

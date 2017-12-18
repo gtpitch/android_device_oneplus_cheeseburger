@@ -2469,7 +2469,6 @@
     <path name="unprocessed-mic">
         <path name="unprocessed-handset-mic" />
     </path>
-
     <!-- USB TTY start -->
 
     <!-- full: both end tty -->

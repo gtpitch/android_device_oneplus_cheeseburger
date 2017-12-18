@@ -10,13 +10,18 @@
    "branch":      "o8x-caf"
   },
   {
+   "repository" : "DirtyUnicorns/android_system_qcom",
+   "target_path": "system/qcom",
+   "branch"     : "o8x-caf"
+  },
+  {
    "repository":  "DirtyUnicorns/android_vendor_oneplus",
    "target_path": "vendor/oneplus",
    "branch":      "o8x-caf"
   },
   {
-   "repository" : "DirtyUnicorns/android_system_qcom",
-   "target_path": "system/qcom",
-   "branch"     : "o8x-caf"
+   "repository":  "DirtyUnicorns/android_vendor_qcom_opensource_dpm",
+   "target_path": "vendor/qcom/opensource/dpm",
+   "branch":      "o8x-caf"
   }
 ]

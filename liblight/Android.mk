@@ -17,11 +17,16 @@ LOCAL_PATH:= $(call my-dir)
 # hw/<COPYPIX_HARDWARE_MODULE_ID>.<ro.board.platform>.so
 include $(CLEAR_VARS)
 
+LOCAL_C_INCLUDES += $(TARGET_OUT_HEADERS)/common/inc
+LOCAL_C_INCLUDES += $(TARGET_OUT_HEADERS)/qdcm/inc
+
 LOCAL_SRC_FILES := lights.c
 LOCAL_SHARED_LIBRARIES := liblog libcutils
 
 LOCAL_MODULE := lights.msm8998
 LOCAL_MODULE_TAGS := optional
+LOCAL_VENDOR_MODULE := true
+LOCAL_CLANG  := true
 
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_PROPRIETARY_MODULE := true

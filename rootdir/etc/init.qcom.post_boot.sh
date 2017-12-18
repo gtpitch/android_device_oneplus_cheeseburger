@@ -103,6 +103,7 @@ case "$target" in
 	echo 400000 > /proc/sys/kernel/sched_freq_dec_notify
 	echo 5 > /proc/sys/kernel/sched_spill_nr_run
 	echo 1 > /proc/sys/kernel/sched_restrict_cluster_spill
+        echo 1 > /proc/sys/kernel/sched_prefer_sync_wakee_to_waker
 	start iop
 
         # disable thermal bcl hotplug to switch governor
@@ -141,38 +142,38 @@ case "$target" in
 	echo 300000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 	echo 1 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/ignore_hispeed_on_notif
 
-    # re-enable thermal and BCL hotplug
-    echo 1 > /sys/module/msm_thermal/core_control/enabled
+        # re-enable thermal and BCL hotplug
+        echo 1 > /sys/module/msm_thermal/core_control/enabled
 
-    # Enable input boost configuration
-    echo "0:1324800" > /sys/module/cpu_boost/parameters/input_boost_freq
-    echo 100 > /sys/module/cpu_boost/parameters/input_boost_ms
-    # Enable bus-dcvs
-    for cpubw in /sys/class/devfreq/*qcom,cpubw*
-    do
-        echo "bw_hwmon" > $cpubw/governor
-        echo 50 > $cpubw/polling_interval
-        echo 1525 > $cpubw/min_freq
-        echo "3143 5859 11863 13763" > $cpubw/bw_hwmon/mbps_zones
-        echo 4 > $cpubw/bw_hwmon/sample_ms
-        echo 34 > $cpubw/bw_hwmon/io_percent
-        echo 20 > $cpubw/bw_hwmon/hist_memory
-        echo 10 > $cpubw/bw_hwmon/hyst_length
-        echo 0 > $cpubw/bw_hwmon/low_power_ceil_mbps
-        echo 34 > $cpubw/bw_hwmon/low_power_io_percent
-        echo 20 > $cpubw/bw_hwmon/low_power_delay
-        echo 0 > $cpubw/bw_hwmon/guard_band_mbps
-        echo 250 > $cpubw/bw_hwmon/up_scale
-        echo 1600 > $cpubw/bw_hwmon/idle_mbps
-    done
+        # Enable input boost configuration
+        echo "0:1324800" > /sys/module/cpu_boost/parameters/input_boost_freq
+        echo 40 > /sys/module/cpu_boost/parameters/input_boost_ms
+        # Enable bus-dcvs
+        for cpubw in /sys/class/devfreq/*qcom,cpubw*
+        do
+            echo "bw_hwmon" > $cpubw/governor
+            echo 50 > $cpubw/polling_interval
+            echo 1525 > $cpubw/min_freq
+            echo "3143 5859 11863 13763" > $cpubw/bw_hwmon/mbps_zones
+            echo 4 > $cpubw/bw_hwmon/sample_ms
+            echo 34 > $cpubw/bw_hwmon/io_percent
+            echo 20 > $cpubw/bw_hwmon/hist_memory
+            echo 10 > $cpubw/bw_hwmon/hyst_length
+            echo 0 > $cpubw/bw_hwmon/low_power_ceil_mbps
+            echo 34 > $cpubw/bw_hwmon/low_power_io_percent
+            echo 20 > $cpubw/bw_hwmon/low_power_delay
+            echo 0 > $cpubw/bw_hwmon/guard_band_mbps
+            echo 250 > $cpubw/bw_hwmon/up_scale
+            echo 1600 > $cpubw/bw_hwmon/idle_mbps
+        done
 
-    for memlat in /sys/class/devfreq/*qcom,memlat-cpu*
-    do
-        echo "mem_latency" > $memlat/governor
-        echo 10 > $memlat/polling_interval
-        echo 400 > $memlat/mem_latency/ratio_ceil
-    done
-    echo "cpufreq" > /sys/class/devfreq/soc:qcom,mincpubw/governor
+        for memlat in /sys/class/devfreq/*qcom,memlat-cpu*
+        do
+            echo "mem_latency" > $memlat/governor
+            echo 10 > $memlat/polling_interval
+            echo 400 > $memlat/mem_latency/ratio_ceil
+        done
+        echo "cpufreq" > /sys/class/devfreq/soc:qcom,mincpubw/governor
 	if [ -f /sys/devices/soc0/soc_id ]; then
 		soc_id=`cat /sys/devices/soc0/soc_id`
 	else
@@ -185,27 +186,26 @@ case "$target" in
 		hw_platform=`cat /sys/devices/system/soc/soc0/hw_platform`
 	fi
 
-	if [ -f /sys/devices/soc0/platform_subtype_id ]; then
-		 platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
-	fi
-
 	if [ -f /sys/devices/soc0/platform_version ]; then
 		platform_version=`cat /sys/devices/soc0/platform_version`
 		platform_major_version=$((10#${platform_version}>>16))
 	fi
 
+	if [ -f /sys/devices/soc0/platform_subtype_id ]; then
+		platform_subtype_id=`cat /sys/devices/soc0/platform_subtype_id`
+	fi
 	case "$soc_id" in
-		"292") #msm8998
+		"292") #msm8998 apq8098_latv
 		# Start Host based Touch processing
 		case "$hw_platform" in
 		"QRD")
 			case "$platform_subtype_id" in
 				"0")
-					start hbtp
+					start_hbtp
 					;;
 				"16")
 					if [ $platform_major_version -lt 6 ]; then
-						start hbtp
+						start_hbtp
 					fi
 					;;
 			esac
@@ -243,15 +243,21 @@ case "$target" in
 	echo N > /sys/module/lpm_levels/system/perf/perf-l2-dynret/idle_enabled
 	echo N > /sys/module/lpm_levels/system/perf/perf-l2-ret/idle_enabled
 	echo N > /sys/module/lpm_levels/parameters/sleep_disabled
-    echo 0-2,4 > /dev/cpuset/background/cpus
-    echo 0-5 > /dev/cpuset/system-background/cpus
-    echo 0 > /proc/sys/kernel/sched_boost
 
-	#if [ -f "/defrag_aging.ko" ]; then
-	#	insmod /defrag_aging.ko
-	#else
-	#	insmod /system/lib/modules/defrag.ko
-	#fi
+        echo 0-3 > /dev/cpuset/background/cpus
+        echo 0-3 > /dev/cpuset/system-background/cpus
+        echo 0 > /proc/sys/kernel/sched_boost
+	if [ -f "/defrag_aging.ko" ]; then
+		insmod /defrag_aging.ko
+	else
+		insmod /system/lib/modules/defrag.ko
+	fi
+#OPChain
+        if [ -f "/opchain_aging.ko" ]; then
+                insmod /opchain_aging.ko
+        else
+                insmod /system/lib/modules/opchain.ko
+        fi
     sleep 1
 	#lsmod | grep defrag
 	#if [ $? != 0 ]; then
@@ -303,3 +309,8 @@ case "$console_config" in
         echo "Enable console config to $console_config"
         ;;
 esac
+
+# Parse misc partition path and set property
+misc_link=$(ls -l /dev/block/bootdevice/by-name/misc)
+real_path=${misc_link##*>}
+setprop persist.vendor.mmi.misc_dev_path $real_path
