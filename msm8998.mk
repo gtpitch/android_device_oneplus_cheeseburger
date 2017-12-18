@@ -306,3 +306,5 @@ PRODUCT_PACKAGES += android.hardware.thermal@1.0-impl \
 
 $(call inherit-product-if-exists, vendor/oneplus/prebuilt.mk)
 $(call inherit-product-if-exists, device/qcom/msm8998/device-vendor.mk)
+
+PRODUCT_BOOT_JARS += tcmiface
