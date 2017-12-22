@@ -222,13 +222,7 @@ PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl \
     gps.msm8998 \
     gps.conf \
-    libgps.utils \
-    libloc_core \
-    libloc_eng \
-    libloc_pla \
-    libloc_stub \
-    libcurl \
-    libgnsspps
+    libgnsspps \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:system/vendor/etc/flp.conf \
