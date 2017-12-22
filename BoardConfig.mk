@@ -205,9 +205,6 @@ WITH_DEXPREOPT := false
 # FM
 BOARD_HAVE_QCOM_FM := true
 
-# Gestures
-TARGET_GESTURES_NODE := "/proc/touchpanel/gesture_enable"
-
 # Filesystem
 TARGET_FS_CONFIG_GEN += $(PLATFORM_PATH)/config.fs
 
