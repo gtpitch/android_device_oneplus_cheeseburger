@@ -320,12 +320,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 PRODUCT_PACKAGES += \
-    power.msm8998 \
-    powerhint.qti \
-    android.hardware.power@1.0-impl \
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/powerhint_soc_id_292.xml:system/etc/powerhint.xml
+    power.msm8998
 
 # QMI
 PRODUCT_PACKAGES += \
