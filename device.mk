@@ -343,33 +343,42 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/
 PRODUCT_PACKAGES += \
     libjson
 
+# FBE support
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init.qti.qseecomd.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qti.qseecomd.sh
+
 # Ramdisk
 PRODUCT_PACKAGES += \
-    fstab.qcom \
-    init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
-    init.qcom.power.rc \
+    init.qcom.post_boot.sh \
+    init.qti.ims.sh \
+    init.qcom.efs.sync.sh \
+    init.qcom.coex.sh \
+    init.qcom.sdio.sh \
+    init.qcom.wifi.sh \
+    init.crda.sh \
     init.qcom.rc \
-    init.qcom.sensors.sh \
+    init.recovery.qcom.rc \
+    init.qcom.factory.rc \
     init.qcom.sh \
-    init.qcom.syspart_fixup.sh \
-    init.qcom.usb.configfs.rc \
+    init.qcom.class_core.sh \
+    init.class_main.sh \
     init.qcom.usb.rc \
+    init.msm.usb.configfs.rc \
     init.qcom.usb.sh \
-    init.target.rc \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    init.qcom.syspart_fixup.sh \
+    qca6234-service.sh \
+    init.qcom.ssr.sh \
+    init.mdm.sh \
+    init.qcom.debug.sh \
+    init.qcom.debug-sdm660.sh \
+    init.qcom.sensors.sh \
+    init.qcom.crashdata.sh \
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.audio.sh:system/etc/init.qcom.audio.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.fm.sh:system/etc/init.qcom.fm.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.uicc.sh:system/etc/init.qcom.uicc.sh \
-    $(LOCAL_PATH)/rootdir/etc/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
-    $(LOCAL_PATH)/twrp/twrp.fstab:recovery/root/etc/twrp.fstab
+    $(LOCAL_PATH)/fstab.qcom:$(TARGET_OUT_VENDOR_ETC)/fstab.qcom \
+    $(LOCAL_PATH)/init.target.rc:$(TARGET_OUT_VENDOR_ETC)/init/hw/init.target.rc \
 
 # Recovery
 PRODUCT_PACKAGES += \
