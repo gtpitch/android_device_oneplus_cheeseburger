@@ -122,7 +122,10 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libvolumelistener \
-    tinymix
+    tinymix \
+    libqahw \
+    libOmxG711Enc \
+    libhwacceffectswrapper
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/aanc_tuning_mixer.txt:$(TARGET_COPY_OUT_VENDOR)/etc/aanc_tuning_mixer.txt \
@@ -193,7 +196,13 @@ PRODUCT_PACKAGES += \
     memtrack.msm8998 \
     libgenlock \
     liboverlay \
-    libtinyxml
+    libtinyxml \
+    libhwc2on1adapter \
+    libdisplayconfig \
+    libsdmcore \
+    libqservice \
+    libgpu_tonemapper \
+    libqdMetaData.system
 
 # Doze mode
 #PRODUCT_PACKAGES += \
@@ -254,7 +263,7 @@ PRODUCT_COPY_FILES += \
 
 # IRSC
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/sec_config:system/etc/sec_config
+    $(LOCAL_PATH)/configs/sec_config:$(TARGET_COPY_OUT_VENDOR)/etc/sec_config
 
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -290,6 +299,15 @@ PRODUCT_PACKAGES += \
     libregistermsext \
     mediametrics \
 
+# IMS and DPM
+PRODUCT_PACKAGES += \
+    com.android.ims.rcsmanager \
+    com.android.ims.rcsmanager.xml \
+    ims-ext-common \
+    RcsService \
+    PresencePolling \
+    tcmiface
+
 # Netutils
 PRODUCT_PACKAGES += \
     android.system.net.netd@1.0 \
@@ -310,7 +328,6 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
     libextmedia_jni \
     libhypv_intercept \
     libOmxAacEnc \
@@ -389,7 +406,8 @@ PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl \
     librmnetctl \
     libxml2 \
-    libprotobuf-cpp-full
+    libprotobuf-cpp-full \
+    rild_socket
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \

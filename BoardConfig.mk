@@ -64,6 +64,7 @@ ENABLE_SCHEDBOOST := true
 
 TARGET_USES_UEFI := true
 TARGET_USES_64_BIT_BINDER := true
+TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=2048
@@ -169,6 +170,9 @@ TARGET_USES_QTI_CAMERA2CLIENT := true
 USE_CAMERA_STUB := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 
+# Media
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
@@ -184,13 +188,14 @@ TARGET_CRYPTFS_HW_PATH := vendor/qcom-opensource/cryptfs_hw
 BOARD_USES_ADRENO := true
 
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API :=true
 TARGET_USES_OVERLAY := true
 TARGET_USES_COLOR_METADATA := true
-TARGET_CONTINUOUS_SPLASH_ENABLED := true
 USE_OPENGL_RENDERER := true
+TARGET_USES_HWC2 := true
+TARGET_USES_GRALLOC1 := true
+TARGET_USES_QCOM_DISPLAY_BSP := true
 
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
@@ -299,6 +304,8 @@ BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
 WIFI_DRIVER_FW_PATH_P2P := "p2p"
+WIFI_DRIVER_MODULE_PATH := "/system/vendor/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
