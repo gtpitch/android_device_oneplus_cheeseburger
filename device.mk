@@ -132,14 +132,10 @@ PRODUCT_PACKAGES += \
     libgpu_tonemapper \
     libqdMetaData.system
 
-# Doze mode
-PRODUCT_PACKAGES += \
-    OneplusThreeDoze
-
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
     fingerprintd \
-    OneplusPocketMode
+#    OneplusPocketMode
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
@@ -317,9 +313,6 @@ PRODUCT_PACKAGES += \
     ims-ext-common \
     RcsService \
     PresencePolling \
-    tcmiface
-
-PRODUCT_BOOT_JARS += \
     tcmiface
 
 # Netutils

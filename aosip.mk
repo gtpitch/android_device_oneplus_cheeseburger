@@ -21,16 +21,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from cheeseburger device
 $(call inherit-product, device/oneplus/cheeseburger/device.mk)
 
-# Inherit some common DU stuff.
-$(call inherit-product, vendor/du/config/common_full_phone.mk)
+# Inherit some common AOSiP stuff.
+$(call inherit-product, vendor/aosip/config/common_full_phone.mk)
 
-# Build Launcher3
-PRODUCT_PACKAGES += \
-        Launcher3
-
-ALLOW_MISSING_DEPENDENCIES := true
-
-PRODUCT_NAME := du_cheeseburger
+PRODUCT_NAME := aosip_cheeseburger
 PRODUCT_DEVICE := cheeseburger
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
